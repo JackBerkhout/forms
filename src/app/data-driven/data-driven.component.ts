@@ -55,7 +55,10 @@ export class DataDrivenComponent {
     });
 
     this.myForm.statusChanges.subscribe(
-      (data: any) => console.log(data)
+      (data: any) => {
+        console.log('Data-driven form changed');
+        console.log(data);
+      }
     );
   }
 
@@ -64,6 +67,7 @@ export class DataDrivenComponent {
   }
 
   onSubmit() {
+    console.log('Data-driven form submitted');
     console.log(this.myForm);
   }
 

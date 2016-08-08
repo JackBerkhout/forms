@@ -5,7 +5,8 @@
       <hr>
       <data-driven></data-driven>
       <hr>
-      <template-driven></template-driven>
+      <template-driven (formSubmit)="onTemplateSubmit($event)"></template-driven>
+        <pre>{{myUser | json }}</pre>
       <hr>
     </div>
   </div>
