@@ -6,7 +6,7 @@ import { DataDrivenComponent } from "./data-driven/data-driven.component";
   moduleId: module.id,
   selector: 'forms-app',
   templateUrl: 'forms.component.html',
-  directives: [DataDrivenComponent]
+  directives: [DataDrivenComponent, TemplateDrivenComponent]
 })
 export class AppComponent {
 }
