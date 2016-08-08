@@ -80,14 +80,14 @@
 
   <div class="form-group">
     <label>Options :</label>
-    <div *ngFor="let option of options; let i = index">
+    <div *ngFor="let option of optionsMap | keyValueFilter; let i = index">
       <label>
         <input type="checkbox"
                name="options"
-               value="{{option}}"
-               [checked]="optionsMap[option]"
-               (change)="updateCheckedOptions(option, $event)"/>
-        {{option}} ({{optionsMap[option]}})
+               value="{{option.key}}"
+               [checked]="optionsMap[option.key]"
+               (change)="updateCheckedOptions(option.key, $event)"/>
+        {{option.key}} ({{optionsMap[option.key]}})
       </label>
     </div>
   </div>

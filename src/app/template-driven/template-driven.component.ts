@@ -2,6 +2,7 @@ import {Component, EventEmitter, Output, OnInit} from '@angular/core';
 import { NgForm } from "@angular/forms";
 // import { User } from './user.interface';
 // import { Theme } from './theme.interface';
+import {KeyValueFilterPipe} from '../pipes/key-value.pipe';
 
 @Component({
   moduleId: module.id,
@@ -14,7 +15,8 @@ import { NgForm } from "@angular/forms";
     .panel {
         padding: 16px;
     }
-  `]
+  `],
+  pipes: [KeyValueFilterPipe]
 })
 export class TemplateDrivenComponent implements OnInit {
 
@@ -53,7 +55,8 @@ export class TemplateDrivenComponent implements OnInit {
     { value: 'isunchecked', display: 'IsUnchecked' },
   ];
 
-  options = [];
+  // options = [];
+  // optionsMapNames = [];
   optionsMap = {
     OptionA: true,
     OptionB: false,
@@ -64,22 +67,21 @@ export class TemplateDrivenComponent implements OnInit {
   @Output() formSubmit = new EventEmitter();
 
   ngOnInit() {
-    this.initOptions();
+    // this.initOptions();
     this.updateOptionsMap();
   }
 
-  initOptions() {
-    for(var x in this.optionsMap) {
-      this.options.push(x);
-    }
-  }
+  // initOptions() {
+  //   for(var x in this.optionsMap) {
+  //     this.optionsMapNames.push(x);
+  //   }
+  // }
 
   updateCheckedOptions(option, event) {
     this.optionsMap[option] = event.target.checked;
     // console.log(option);
     // console.log(this.optionsMap);
     this.updateOptionsMap();
-    console.log(this.user.options);
   }
 
   updateOptionsMap() {
@@ -90,6 +92,7 @@ export class TemplateDrivenComponent implements OnInit {
         this.user.options.push(x);
       }
     }
+    console.log(this.user.options);
   }
 
   onSubmit(form: NgForm) {

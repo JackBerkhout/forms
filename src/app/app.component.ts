@@ -23,7 +23,7 @@ export class AppComponent {
         topics: 'tech',
         isActive: true,
         toggle: 'isunchecked',
-        options: []
+        options: ['OptionC']
     };
 
     onTemplateSubmit(event) {
