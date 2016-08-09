@@ -8,9 +8,6 @@ import {DataDrivenComponent} from "./data-driven/data-driven.component";
     templateUrl: 'forms.component.html',
     directives: [DataDrivenComponent, TemplateDrivenComponent],
     styles: [`
-    .panel {
-        padding: 16px;
-    }
   `]
 })
 export class AppComponent {
@@ -23,7 +20,7 @@ export class AppComponent {
         topics: 'tech',
         isActive: true,
         toggle: 'isunchecked',
-        options: ['OptionC']
+        hobbies: ['Swimming']
     };
 
     onTemplateSubmit(event) {

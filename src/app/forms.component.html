@@ -1,13 +1,21 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <h1>Forms</h1>
-      <hr>
-      <data-driven></data-driven>
-      <hr>
-      <template-driven (formSubmit)="onTemplateSubmit($event)"></template-driven>
-        <pre>{{myUser | json }}</pre>
-      <hr>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h1>Forms</h1>
+            <div class="panel panel-default">
+                <div class="panel-heading">Data Driven</div>
+                <div class="panel-body">
+                    <data-driven (formSubmit)="onTemplateSubmit($event)"></data-driven>
+                    <pre>{{myUser | json }}</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Template Driven</div>
+                <div class="panel-body">
+                    <template-driven (formSubmit)="onTemplateSubmit($event)"></template-driven>
+                    <pre>{{myUser | json }}</pre>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

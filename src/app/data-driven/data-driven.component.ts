@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Output, EventEmitter} from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -17,6 +17,19 @@ import { Observable } from "rxjs/Rx";
 })
 export class DataDrivenComponent {
   myForm: FormGroup;
+
+  user = {
+    username: 'Max',
+    email: 'chris@test.com',
+    password: 'test',
+    gender: 'M',
+    role: 'guest',
+    topics: 'tech',
+    isActive: true,
+    toggle: 'isunchecked',
+    colors: [],
+    hobbies: []
+  };
 
   genders = [
     'male',
@@ -54,11 +67,23 @@ export class DataDrivenComponent {
       ])
     });
 
+    this.myForm.valueChanges.subscribe(
+        (data: any) => {
+          console.log('Data-driven form valueChanges');
+          console.log(data);
+          this.user.username = data.userData.username;
+          this.user.email = data.userData.email;
+          this.user.password = data.password;
+          this.user.gender = data.gender;
+          this.user.hobbies = data.hobbies;
+        }
+    );
+    
     this.myForm.statusChanges.subscribe(
-      (data: any) => {
-        console.log('Data-driven form changed');
-        console.log(data);
-      }
+        (data: any) => {
+          console.log('Data-driven form statusChanges');
+          console.log(data);
+        }
     );
   }
 
@@ -66,9 +91,19 @@ export class DataDrivenComponent {
     (<FormArray>this.myForm.find('hobbies')).push(new FormControl('', Validators.required, this.asyncExampleValidator));
   }
 
+  @Output() formSubmit = new EventEmitter();
+
   onSubmit() {
     console.log('Data-driven form submitted');
     console.log(this.myForm);
+    console.log(this.myForm.controls);
+    this.user.username = this.myForm.controls['userData'].value.username;
+    this.user.email = this.myForm.controls['userData'].value.email;
+    this.user.password = this.myForm.controls['password'].value;
+    this.user.gender = this.myForm.controls['gender'].value;
+    this.user.hobbies = this.myForm.controls['hobbies'].value;
+    console.log(this.user);
+    this.formSubmit.emit(this.user);
   }
 
   exampleValidator(control: FormControl): {[s: string]: boolean} {

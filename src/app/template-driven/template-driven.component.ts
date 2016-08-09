@@ -12,9 +12,6 @@ import {KeyValueFilterPipe} from '../pipes/key-value.pipe';
     .ng-invalid.ng-touched {
       border: 1px solid red;
     }
-    .panel {
-        padding: 16px;
-    }
   `],
   pipes: [KeyValueFilterPipe]
 })
@@ -30,7 +27,7 @@ export class TemplateDrivenComponent implements OnInit {
     topics: 'tech',
     isActive: true,
     toggle: 'isunchecked',
-    options: []
+    hobbies: []
   };
 
   public genders = [
@@ -47,52 +44,53 @@ export class TemplateDrivenComponent implements OnInit {
   public topics = [
     { value: 'game', display: 'Gaming' },
     { value: 'tech', display: 'Technology' },
-    { value: 'life', display: 'Lifestyle' },
+    { value: 'life', display: 'Lifestyle' }
   ];
 
   public toggles = [
     { value: 'ischecked', display: 'IsChecked' },
-    { value: 'isunchecked', display: 'IsUnchecked' },
+    { value: 'isunchecked', display: 'IsUnchecked' }
   ];
 
   // options = [];
   // optionsMapNames = [];
-  optionsMap = {
-    OptionA: true,
-    OptionB: false,
-    OptionC: true,
-    OptionD: true,
-  };
+  // optionsMap = {
+  //   OptionA: true,
+  //   OptionB: false,
+  //   OptionC: true,
+  //   OptionD: true,
+  // };
+
+  public optionsMap2 = [
+    { name: 'Wind Surfing', checked: true },
+    { name: 'Ice Skating', checked: false },
+    { name: 'Web Surfing', checked: true },
+    { name: 'Watching Movies', checked: true },
+  ];
 
   @Output() formSubmit = new EventEmitter();
 
   ngOnInit() {
-    // this.initOptions();
-    this.updateOptionsMap();
+    this.updateUserColors();
   }
 
-  // initOptions() {
-  //   for(var x in this.optionsMap) {
-  //     this.optionsMapNames.push(x);
-  //   }
-  // }
-
-  updateCheckedOptions(option, event) {
-    this.optionsMap[option] = event.target.checked;
-    // console.log(option);
-    // console.log(this.optionsMap);
-    this.updateOptionsMap();
-  }
-
-  updateOptionsMap() {
-    this.user.options.splice(0, this.user.options.length);
-    for(var x in this.optionsMap) {
-      // console.log(x + ' ' + this.optionsMap[x]);
-      if (this.optionsMap[x]) {
-        this.user.options.push(x);
+  updateCheckedColors(option, event) {
+    for (var i = 0, l = this.optionsMap2.length; i < l; i++) {
+      if (this.optionsMap2[i].name == option) {
+        this.optionsMap2[i].checked = event.target.checked;
       }
     }
-    console.log(this.user.options);
+    this.updateUserColors();
+  }
+
+  updateUserColors() {
+    this.user.hobbies.splice(0, this.user.hobbies.length);
+    for (var i = 0, l = this.optionsMap2.length; i < l; i++) {
+      if (this.optionsMap2[i].checked) {
+        this.user.hobbies.push(this.optionsMap2[i].name);
+      }
+    }
+    console.log(this.user.hobbies);
   }
 
   onSubmit(form: NgForm) {

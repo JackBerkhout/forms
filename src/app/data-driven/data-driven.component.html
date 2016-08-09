@@ -1,4 +1,4 @@
-<h1>Data Driven</h1>
+<h4>Data Driven</h4>
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
   <div formGroupName="userData">
     <div class="form-group">
@@ -47,9 +47,12 @@
   <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">Submit</button>
 </form>
 <br>
-<div class="panel panel-info">
+<pre>{{user | json }}</pre>
+
+
+<!--<div class="panel panel-info">-->
   <!--<p>{{user.username}}</p>-->
   <!--<p>{{user.email}}</p>-->
   <!--<p>{{user.password}}</p>-->
   <!--<p>{{user.gender}}</p>-->
-</div>
+<!--</div>-->
